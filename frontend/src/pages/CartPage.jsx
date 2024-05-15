@@ -155,18 +155,11 @@ const CartPage = () => {
       {addedItems.length !== 0 ? (
         <>
           <Grid
-            container
-            direction="row"
-            alignContent="center"
-            justifyContent="center"
-            sx={{ paddingTop: 5 }}
+            container spacing={9} justifyContent="start" alignItems="stretch"
           >
-            <Grid item xs={5}>
+            <Grid item xs={12} md={6}>
               <Paper
                 elevation={3}
-                sx={{
-                  width: 550,
-                }}
               >
                 <Grid
                   container
@@ -200,7 +193,7 @@ const CartPage = () => {
                           >
                             <TableCell component="th" scope="row">
                               <Stack direction="row" gap={1}>
-                                <Avatar src={item.images} variant="square" />
+                                <Avatar src={item.images} variant="circle" />
                                 {item.title}
                               </Stack>
                             </TableCell>

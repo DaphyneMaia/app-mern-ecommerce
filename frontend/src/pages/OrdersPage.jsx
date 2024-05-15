@@ -23,6 +23,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Tooltip from "@mui/material/Tooltip";
 
+const baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL = baseURL;
+
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
 
@@ -33,7 +36,8 @@ const OrdersPage = () => {
   const getOrders = async () => {
     const userId = localStorage.getItem("userId");
     try {
-      const response = await axios.get("http://localhost:5000/order/" + userId);
+      const response = await axios.get(`${baseURL}/orders/${userId}`);
+
       setOrders(response.data);
       console.log(response.data);
     } catch (e) {

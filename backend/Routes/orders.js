@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import Order from "../Models/orders.js";
-
+import Order from "../Models/products.js";
 const router = express.Router();
 
 //Post new order
@@ -28,7 +27,6 @@ router.post("/create", async (req, res) => {
 router.get("/:userId", async (req, res) => {
   const userID = req.params.userId;
   const orderList = await Order.find({ userID: userID });
-  console.log(orderList);
   res.send(orderList);
 });
 

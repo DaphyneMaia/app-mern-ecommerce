@@ -1,10 +1,8 @@
-
 import express from "express";
 import bcrypt from "bcrypt";
-import mongoose from "mongoose";
 import User from "../Models/users.js";
 
-const router = express.Router(); 
+const router = express.Router();
 
 router.get("/:id", async (req, res) => {
   const user_id = req.params.id;
@@ -12,7 +10,7 @@ router.get("/:id", async (req, res) => {
   res.send(JSON.stringify(user));
 });
 
-router.post("/regiser", async (req, res) => {
+router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.data.username,
     email: req.body.data.email,

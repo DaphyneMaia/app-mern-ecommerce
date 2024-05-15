@@ -1,9 +1,11 @@
-
 import React, { useState } from "react";
 import { Paper, TextField, Grid, Button, Box } from "@mui/material";
 import { AuthContext } from "../context/authContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL = baseURL;
 
 const RegisterForm = (props) => {
   const authContext = React.useContext(AuthContext);
@@ -25,12 +27,10 @@ const RegisterForm = (props) => {
     console.log(userData);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/users/register",
-        {
-          data: userData,
-        }
-      );
+      const response = await axios.post(`${baseURL}/users/register`, {
+        data: userData,
+      });
+
       console.log(response);
       if (response) {
         if (Object.keys(props)[0] !== "closeForm") {

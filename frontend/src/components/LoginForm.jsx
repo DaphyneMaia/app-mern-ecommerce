@@ -1,9 +1,11 @@
-
 import React, { useState } from "react";
 import { Paper, TextField, Grid, Button, Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/authContext.jsx";
 import axios from "axios";
+
+const baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL = baseURL;
 
 const LoginForm = (props) => {
   const navigate = useNavigate();
@@ -22,9 +24,10 @@ const LoginForm = (props) => {
     console.log(loginData);
 
     try {
-      const response = await axios.post("http://localhost:5000/users/login", {
+      const response = await axios.post(`${baseURL}/users/login`, {
         data: loginData,
       });
+
       console.log(response.data);
       if (response) {
         if (Object.keys(props)[0] !== "closeForm") {

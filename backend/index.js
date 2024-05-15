@@ -14,13 +14,26 @@ import order from "./Routes/orders.js"
 
 const app = express()
 
+
+// Middleware
+const corsOptions = {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    "content-type": "application/json;charset=UTF-8",
+    "Access-Control-Allow-Origin": "*",
+    allowedHeaders: ["Authorization", "Content-Type", "Accept"],
+    exposedHeaders: ["*"],
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions));
+
 // Middleware for CORS
-app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/products", router);
 app.use("/users", user);
-app.use("/order", order);
+app.use("/orders", order);
 app.use(isAuth);
 
 async function connectToMongoDB() {

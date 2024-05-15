@@ -1,4 +1,3 @@
-
 import React from "react";
 import { AuthContext } from "../context/authContext.jsx";
 import { useLocation, Navigate } from "react-router-dom";
